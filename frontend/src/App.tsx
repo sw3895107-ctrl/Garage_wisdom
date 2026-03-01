@@ -1,37 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { getFixes, submitFix, login } from "./api";
-import FixList from "./components/FixList";
-import FixForm from "./components/FixForm";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Fixes from "./pages/Fixes";
+import Navbar from "./components/Navbar";
 
-const App: React.FC = () => {
-  const [fixes, setFixes] = useState<any[]>([]);
-  const [token, setToken] = useState<string>("");
-
-  useEffect(() => {
-    async function fetchFixes() {
-      const data = await getFixes();
-      setFixes(data);
-    }
-    fetchFixes();
-  }, []);
-
-  return (
-    <div className="App">
-      <h1>Garage Wisdom</h1>
-      {token ? (
-        <FixForm token={token} onSubmit={async () => {
-          const data = await getFixes();
-          setFixes(data);
-        }} />
-      ) : (
-        <button onClick={async () => {
-          const res = await login("garageadmin@example.com", "Admin1212");
-          setToken(res.token);
-        }}>Login as Admin</button>
-      )}
-      <FixList fixes={fixes} />
-    </div>
-  );
-};
+const App = () => (
+  <>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/fixes" element={<Fixes />} />
+    </Routes>
+  </>
+);
 
 export default App;
