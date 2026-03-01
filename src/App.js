@@ -1,0 +1,1 @@
+import React from'react';function App(){return(<div style={{textAlign:'center',padding:50,background:'#282c34',minHeight:'100vh',color:'white'}}><h1 style={{color:'#61dafb'}}>Garage Wisdom</h1><p>OBD2 Reader & Problem Solving</p></div>);}export default App;
